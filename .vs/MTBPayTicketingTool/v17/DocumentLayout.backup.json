@@ -1,0 +1,205 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|c:\\users\\waqar ahmed\\desktop\\mtb pay ticketing tool\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|solutionrelative:controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|c:\\users\\waqar ahmed\\desktop\\mtb pay ticketing tool\\controllers\\ticketmanagementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|solutionrelative:controllers\\ticketmanagementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|c:\\users\\waqar ahmed\\desktop\\mtb pay ticketing tool\\views\\ticketmanagement\\viewticketrecords.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|solutionrelative:views\\ticketmanagement\\viewticketrecords.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|c:\\users\\waqar ahmed\\desktop\\mtb pay ticketing tool\\views\\ticketmanagement\\viewticketrecord.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|solutionrelative:views\\ticketmanagement\\viewticketrecord.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|c:\\users\\waqar ahmed\\desktop\\mtb pay ticketing tool\\views\\ticketmanagement\\editticketrecord.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|solutionrelative:views\\ticketmanagement\\editticketrecord.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|c:\\users\\waqar ahmed\\desktop\\mtb pay ticketing tool\\views\\ticketmanagement\\ticketmanagement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|solutionrelative:views\\ticketmanagement\\ticketmanagement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|c:\\users\\waqar ahmed\\desktop\\mtb pay ticketing tool\\models\\ticketmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|solutionrelative:models\\ticketmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|c:\\users\\waqar ahmed\\desktop\\mtb pay ticketing tool\\models\\viewmodels\\ticketmanagementviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|solutionrelative:models\\viewmodels\\ticketmanagementviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|c:\\users\\waqar ahmed\\desktop\\mtb pay ticketing tool\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|c:\\users\\waqar ahmed\\desktop\\mtb pay ticketing tool\\views\\admin\\usermanagement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|solutionrelative:views\\admin\\usermanagement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|c:\\users\\waqar ahmed\\desktop\\mtb pay ticketing tool\\views\\admin\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FE1CC7D7-B69C-44F9-B9C6-41122FB9D338}|PMEHCRM.csproj|solutionrelative:views\\admin\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 227,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ViewTicketRecord.cshtml",
+              "DocumentMoniker": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\Views\\TicketManagement\\ViewTicketRecord.cshtml",
+              "RelativeDocumentMoniker": "Views\\TicketManagement\\ViewTicketRecord.cshtml",
+              "ToolTip": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\Views\\TicketManagement\\ViewTicketRecord.cshtml",
+              "RelativeToolTip": "Views\\TicketManagement\\ViewTicketRecord.cshtml",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAAABgAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-30T15:19:17.251Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "Controllers\\AdminController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-30T11:34:52.16Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ViewTicketRecords.cshtml",
+              "DocumentMoniker": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\Views\\TicketManagement\\ViewTicketRecords.cshtml",
+              "RelativeDocumentMoniker": "Views\\TicketManagement\\ViewTicketRecords.cshtml",
+              "ToolTip": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\Views\\TicketManagement\\ViewTicketRecords.cshtml",
+              "RelativeToolTip": "Views\\TicketManagement\\ViewTicketRecords.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-05T16:57:25.065Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TicketManagement.cshtml",
+              "DocumentMoniker": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\Views\\TicketManagement\\TicketManagement.cshtml",
+              "RelativeDocumentMoniker": "Views\\TicketManagement\\TicketManagement.cshtml",
+              "ToolTip": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\Views\\TicketManagement\\TicketManagement.cshtml",
+              "RelativeToolTip": "Views\\TicketManagement\\TicketManagement.cshtml",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAWwPoAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-05T16:40:57.159Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TicketManagementController.cs",
+              "DocumentMoniker": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\Controllers\\TicketManagementController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TicketManagementController.cs",
+              "ToolTip": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\Controllers\\TicketManagementController.cs",
+              "RelativeToolTip": "Controllers\\TicketManagementController.cs",
+              "ViewState": "AgIAABgBAAAAAAAAAAAcwA4BAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T16:34:21.626Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "TicketManagementViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\Models\\ViewModels\\TicketManagementViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\ViewModels\\TicketManagementViewModel.cs",
+              "ToolTip": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\Models\\ViewModels\\TicketManagementViewModel.cs",
+              "RelativeToolTip": "Models\\ViewModels\\TicketManagementViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAkAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T20:00:37.418Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TicketManagement.cs",
+              "DocumentMoniker": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\Models\\TicketManagement.cs",
+              "RelativeDocumentMoniker": "Models\\TicketManagement.cs",
+              "ToolTip": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\Models\\TicketManagement.cs",
+              "RelativeToolTip": "Models\\TicketManagement.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAIwBgAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T20:01:27.382Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "wwwroot\\css\\site.css",
+              "ViewState": "AgIAAMEAAAAAAAAAAAAIwOYAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-09-05T17:16:15.981Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EditTicketRecord.cshtml",
+              "DocumentMoniker": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\Views\\TicketManagement\\EditTicketRecord.cshtml",
+              "RelativeDocumentMoniker": "Views\\TicketManagement\\EditTicketRecord.cshtml",
+              "ToolTip": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\Views\\TicketManagement\\EditTicketRecord.cshtml",
+              "RelativeToolTip": "Views\\TicketManagement\\EditTicketRecord.cshtml",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAABUBAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-05T16:37:48.848Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\Views\\Admin\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\Admin\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\Views\\Admin\\Edit.cshtml",
+              "RelativeToolTip": "Views\\Admin\\Edit.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABsAAABdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-05T15:03:18.287Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UserManagement.cshtml",
+              "DocumentMoniker": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\Views\\Admin\\UserManagement.cshtml",
+              "RelativeDocumentMoniker": "Views\\Admin\\UserManagement.cshtml",
+              "ToolTip": "C:\\Users\\Waqar Ahmed\\Desktop\\MTB Pay ticketing Tool\\Views\\Admin\\UserManagement.cshtml",
+              "RelativeToolTip": "Views\\Admin\\UserManagement.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACcAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-05T15:01:37.038Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

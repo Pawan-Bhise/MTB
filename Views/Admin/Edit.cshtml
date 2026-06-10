@@ -1,0 +1,70 @@
+﻿@model PMEHCRM.Models.Login
+
+<div class="content-box">
+    <div class="p-4">
+        <div class="my-2">
+            <a class="btn-primary text-decoration-none border-3  rounded p-2 text-white" asp-controller="Admin" asp-action="UserManagement"> Back To User List </a>
+        </div>
+        <h2>Edit User</h2>
+        <form asp-action="Edit" method="post">
+            <div class="form-group">
+                <label asp-for="Username"></label>
+                <input asp-for="Username" id="Id" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" type="password" value="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Role"></label>
+                <select asp-for="Role" asp-items="ViewBag.RoleList" class="form-control"></select>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+
+            <button type="submit" asp-route="UserId" class="btn btn-primary my-2 edit-confirm">Save</button>
+
+            <div class="modal fade" id="confirmEditModal" tabindex="-1" aria-labelledby="confirmEditLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content p-4">
+                        <div class="modal-header ">
+                            <h5 class="modal-title" id="confirmEditLabel">Confirm Edit</h5>
+                            <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            Do you want to edit this user?
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="col-md-6 m-1">
+                                <button type="button" class="btn btn-dark text-white w-100" data-bs-dismiss="modal">No</button>
+                            </div>
+                            <div class="col-md-6 m-1">
+                                <button type="button" class="btn btn-danger w-100" id="confirmEditBtn">Yes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $(function() {
+        let formToSubmit = null;
+        const confirmModal = new bootstrap.Modal(document.getElementById('confirmEditModal'));
+
+        $('.edit-confirm').click(function(e) {
+            e.preventDefault();
+            formToSubmit = $(this).closest('form'); // store the form
+            confirmModal.show();
+        });
+        $('#confirmEditBtn').click(function() {
+            if (formToSubmit) {
+                formToSubmit.submit(); // submit form when Yes clicked
+            }
+        });
+    });
+</script>

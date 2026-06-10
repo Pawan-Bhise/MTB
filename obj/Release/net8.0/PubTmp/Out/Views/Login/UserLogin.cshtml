@@ -1,0 +1,30 @@
+﻿@using PMEHCRM.Models.ViewModels
+@model UserLoginViewModel
+
+<div class="flex align-items-center justify-content-center p-4 w-100">
+    <div class="login-box mx-auto p-4">
+        <img src="https://play-lh.googleusercontent.com/ZYHXbtAopfQfJjCiTdDciNQFtzw6eY0fUbBBlzsrJ7bEVZlh9qfppjt8E66ia7JyHRY0=w240-h480-rw" alt="MTB Logo" class="login-logo">
+        <h2 class="text-center">Login to MTB Pay</h2>
+        <form asp-action="UserLogin" method="post" class="form-text">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group m-2">
+                <label asp-for="Username">Username</label>
+                <input asp-for="Username" class="form-control" placeholder="Enter your username" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group  m-2">
+                <label asp-for="Password">Password</label>
+                <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">
+                Login
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z" />
+                    <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                </svg>
+            </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,307 @@
+﻿@model PMEHCRM.Models.CRMFormat
+
+@{
+    ViewData["Title"] = "EditCRMRecord";
+}
+
+<div class="content-box">
+    <div class="p-4">
+        @if (Context.Session.GetString("Role") == "Admin")
+        {
+            <div class="my-4 ">
+                <a class="btn-primary text-decoration-none border-3  rounded p-2 text-white" asp-controller="CRMFORMAT" asp-action="ViewCRMRecords"> Back To CRM Records </a>
+            </div>
+        }
+        else if (Context.Session.GetString("Role") == "Supervisor")
+        {
+            <div class="my-4">
+                <a class="btn-primary text-decoration-none border-3 rounded p-2 text-white" asp-controller="CRMFORMAT" asp-action="ViewCRMRecords"> Back To CRM Records</a>
+            </div>
+        }
+        else if (Context.Session.GetString("Role") == "User")
+        {
+            <div class="my-4">
+                <a class="btn-primary text-decoration-none border-3 rounded p-2 text-white" asp-controller="CRMFORMAT" asp-action="ViewCRMRecords"> Back To CRM Records </a>
+            </div>
+        }
+        <form asp-action="EditCRMRecord" method="post" class="crm-mgmt p-4 border-3 rounded">
+            <!-- Anti-forgery token to ensure valid post -->
+            @Html.AntiForgeryToken()
+            <!-- PME Holding Logo -->
+            <!-- CRM Page Front Section -->
+            <div class="form-headings bg-primary text-white text-center  p-1 rounded">
+                <h4 class="m-2">CRM Page Front</h4>
+            </div>
+
+            <div class="row justify-content-center align-items-center">
+                <!-- Calling Details -->
+                <h4 class="text-dark my-3">Calling Details</h4>
+                <div class="p-2 col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Name">Name</label>
+                        <input asp-for="Name" class="form-control" placeholder="Name" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="p-2 col-md-6">
+                    <div class="form-group">
+                        <label asp-for="CallingNumber">Calling Number</label>
+                        <input asp-for="CallingNumber" class="form-control" placeholder="Calling Number" />
+                        <span asp-validation-for="CallingNumber" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center align-items-center">
+                <!-- Type of Caller and Customer Segment -->
+                <div class="p-2 col-md-6">
+                    <div class="form-group">
+                        <label asp-for="TypeOfCaller">Type of Caller</label>
+                        <select asp-for="TypeOfCaller" id="TypeOfCaller" class="form-control">
+                            <option value="">Select</option>
+                            <option value="Agent">Agent</option>
+                            <option value="Member">Member</option>
+                        </select>
+                        <span asp-validation-for="TypeOfCaller" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="p-2 col-md-6">
+                    <div class="form-group">
+                        <label asp-for="CustomerSegment">Customer Segment</label>
+                        <select asp-for="CustomerSegment" id="CustomerSegment" class="form-control">
+                            <option value="">-- Select --</option>
+                        </select>
+                        <span asp-validation-for="CustomerSegment" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Type of Call and Category Section -->
+            <div class="section-title">
+                <h4>Type of Call & Category</h4>
+            </div>
+
+            <div class="row justify-content-center align-items-center">
+                <div class="form-group p-2 col-md-6">
+                    <label asp-for="TypeOfCall">Type of Call</label>
+                    <select asp-for="TypeOfCall" id="TypeOfCall" class="form-control">
+                        <option value="Query">Query</option>
+                        <option value="Request">Request</option>
+                        <option value="Complaint">Complaint</option>
+                    </select>
+                    <span asp-validation-for="TypeOfCall" class="text-danger"></span>
+                </div>
+                <div class="form-group p-2 col-md-6">
+                    <label asp-for="Category">Category</label>
+                    <select asp-for="Category" id="Category" class="form-control">
+                        <option value="">-- Select Category --</option>
+                        <option value="Product">Product</option>
+                        <option value="Showroom">Showroom</option>
+                        <option value="Service">Service</option>
+                        <option value="Extensive Journey">Extensive Journey</option>
+                        <option value="Feedback & Complaint">Feedback & Complaint</option>
+                        <option value="Outbound">Outbound</option>
+                    </select>
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row justify-content-center align-items-center">
+                <div class="form-group p-2 col-md-6">
+                    <label asp-for="SubCategory">SubCategory</label>
+                    <select asp-for="SubCategory" id="SubCategory" class="form-control">
+                        <option value="">-- Select SubCategory --</option>
+                    </select>
+                    <span asp-validation-for="SubCategory" class="text-danger"></span>
+                </div>
+
+                <div class="form-group p-2 col-md-6">
+                    <label asp-for="SubSubCategory">SubSubCategory</label>
+                    <select asp-for="SubSubCategory" id="SubSubCategory" class="form-control">
+                        <option value="">-- Select SubSubCategory --</option>
+                    </select>
+                    <span asp-validation-for="SubSubCategory" class="text-danger"></span>
+                </div>
+
+                <div class="form-group p-2 col-md-6">
+                    <label asp-for="Remarks">Remarks</label>
+                    <textarea asp-for="Remarks" class="form-control" rows="3" placeholder="Remarks"></textarea>
+                    <span asp-validation-for="Remarks" class="text-danger"></span>
+                </div>
+                <div class="form-group p-2 col-md-6">
+                    <label asp-for="Channel">Channel</label>
+                    <select asp-for="Channel" id="channel" class="form-control">
+                        <option>Call Center</option>
+                        <option>Mail</option>
+                        <option>Viber</option>
+                        <option>Facebook Messenger</option>
+                        <option>Website</option>
+                        <option>Phone</option>
+                    </select>
+                    <span asp-validation-for="Channel" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Customer Information Section -->
+            <div class="section-title">
+                <h4>Customer Information (To Open SR)</h4>
+            </div>
+
+            <div class="row justify-content-center align-items-center">
+                <div class="form-group p-2 col-md-6">
+                    <label asp-for="CustomerName">Customer Name</label>
+                    <input asp-for="CustomerName" class="form-control" placeholder="Input" />
+                    <span asp-validation-for="CustomerName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group p-2 col-md-6">
+                    <label asp-for="PhoneNo">Phone No</label>
+                    <input asp-for="PhoneNo" class="form-control" placeholder="Input" />
+                    <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row justify-content-center align-items-center">
+                <div class="form-group p-2 col-md-6">
+                    <label asp-for="Email">Email</label>
+                    <input asp-for="Email" class="form-control" placeholder="Input" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group p-2 col-md-6">
+                    <label asp-for="AgentName">Agent Name</label>
+                    <input asp-for="AgentName" class="form-control" value="@ViewBag.AgentName" readonly />
+                </div>
+
+                <div class="form-group col-md-12 m-2">
+                    <label asp-for="RequestDetails">Request Details</label>
+                    <textarea asp-for="RequestDetails" class="form-control" rows="3" placeholder="Request Details"></textarea>
+                    <span asp-validation-for="RequestDetails" class="text-danger"></span>
+                </div>
+
+                <div class="form-group p-2 col-md-12">
+                    <label for="NewComment">Add Comment</label>
+                    <textarea asp-for="Comment" class="form-control" row="3" placeholder="Write your comment here..."></textarea>
+                </div>
+            </div>
+
+            <button asp-route="@Model.Id" type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</div>
+
+<!-- Custom JavaScript to handle dynamic dropdowns -->
+<script>
+    // Type of Caller, Customer Segment
+    const customerSegments = {
+        Agent: ['Primer', 'Elite'],
+        Member: ['Normal', 'Ruby/VIP']
+    };
+
+    // Root Category, SubCategory, SubSubCategory dependencies
+    document.querySelector("#TypeOfCaller").addEventListener('change', function () {
+        const typeOfCaller = this.value;
+        const customerSegmentDropdown = document.querySelector("#CustomerSegment");
+
+        // Clear existing options
+        customerSegmentDropdown.innerHTML = '<option value="">-- Select --</option>';
+
+        // Populate options based on Type of Caller
+        if (customerSegments[typeOfCaller]) {
+            customerSegments[typeOfCaller].forEach(segment => {
+                const option = document.createElement('option');
+                option.value = segment;
+                option.textContent = segment;
+                customerSegmentDropdown.appendChild(option);
+            });
+        }
+    });
+       const Rootcategories = {
+        Product: {
+            'Product Inquires': [
+                'Air Conditioner', 'Refrigerator', 'Electric Fan', 'Ventilator', 'Hand Dryer',
+                'Water pump', 'Electric Mortor', 'BE & AMS', 'Gas Insulated Switchgear',
+                'Factory Automation System', 'Meter', 'Shihlin Electric', 'Yazaki Cables & Wires',
+                'IDEC', 'Shizuki', 'Epcos', 'Crompton Greaves', 'Fiamm', 'Yongsung', 'Rishabh', 'Dongwoo',
+                'Aplicaciones Tecnologicas'
+            ],
+            'Pre-order': [
+                'Air Conditioner', 'Refrigerator', 'Electric Fan', 'Ventilator', 'Hand Dryer',
+                'Water pump', 'Electric Mortor', 'BE & AMS', 'Gas Insulated Switchgear',
+                'Factory Automation System', 'Meter', 'Shihlin Electric', 'Yazaki Cables & Wires',
+                'IDEC', 'Shizuki', 'Epcos', 'Crompton Greaves', 'Fiamm', 'Yongsung', 'Rishabh', 'Dongwoo',
+                'Aplicaciones Tecnologicas'
+            ]
+        },
+        Showroom: {
+            'Inquiry': ['Contact details', 'Other']
+        },
+        Service: {
+            'Inquiry': [
+                'Contact details', 'Contract Service', 'Service Fees', 'Spare Parts', 'Servicing',
+                'Repair', 'Install/Re-install', 'Takeoff', 'Other Service'
+            ],
+            'Request': ['Servicing', 'Repair', 'Install/Re-install', 'Takeoff', 'Other Service']
+        },
+        'Extensive Journey': {
+            'Inquiry': ['Marketing Campaign', 'Partnership Program'],
+            'Request': ['Partnership', 'Project'],
+            'Human Resources': ['Job Application'],
+            'Other Inquiry': ['Spam/Irrelevant', 'Other Inquiry']
+        },
+        'Feedback & Complaint': {
+            'Positive Feedback': [
+                'Product', 'Service', 'Process', 'Employee', 'Showroom', 'Service Center',
+                'AIS,PIS', 'Marketing Campaign', 'Partnership Program'
+            ],
+            'Complaint': [
+                'Product', 'Service', 'Process', 'Employee', 'Showroom', 'Service Center',
+                'AIS,PIS', 'Marketing Campaign', 'Partnership Program', 'Project'
+            ]
+        },
+        Outbound: {
+            'OB': ['Customer', 'Service Center', 'Engineer', 'AIS/PIS', 'Project', 'Other']
+        }
+    };
+
+    const categoryDropdown = document.querySelector("#Category");
+    const subCategoryDropdown = document.querySelector("#SubCategory");
+    const subSubCategoryDropdown = document.querySelector("#SubSubCategory");
+
+    // Populate SubCategory when Category changes
+    categoryDropdown.addEventListener('change', function () {
+        const selectedCategory = this.value;
+
+        // Reset subcategory & sub-subcategory
+        subCategoryDropdown.innerHTML = '<option value="">-- Select SubCategory --</option>';
+        subSubCategoryDropdown.innerHTML = '<option value="">-- Select SubSubCategory --</option>';
+
+        if (Rootcategories[selectedCategory]) {
+            Object.keys(Rootcategories[selectedCategory]).forEach(subCat => {
+                const option = document.createElement('option');
+                option.value = subCat;
+                option.textContent = subCat;
+                subCategoryDropdown.appendChild(option);
+            });
+        }
+    });
+
+    // Populate SubSubCategory when SubCategory changes
+    subCategoryDropdown.addEventListener('change', function () {
+        const selectedCategory = categoryDropdown.value;
+        const selectedSubCategory = this.value;
+
+        // Reset sub-subcategory
+        subSubCategoryDropdown.innerHTML = '<option value="">-- Select SubSubCategory --</option>';
+
+        if (Rootcategories[selectedCategory] && Rootcategories[selectedCategory][selectedSubCategory]) {
+            Rootcategories[selectedCategory][selectedSubCategory].forEach(subSubCat => {
+                const option = document.createElement('option');
+                option.value = subSubCat;
+                option.textContent = subSubCat;
+                subSubCategoryDropdown.appendChild(option);
+            });
+        }
+    });
+</script>

@@ -1,0 +1,130 @@
+﻿<div class="content-box h-auto text-center">
+    <img src="./images/CRM.jpg" alt="CRM Dashboard" class="dashboard-img" />
+    <h1 class="mb-4">Welcome to Admin Dashboard!</h1>
+
+    <div class="row g-4 justify-content-center p-4">
+        <div class="col-md-12 " id="">
+            <a asp-controller="TicketManagement" asp-action="ViewTicketRecords" class="text-decoration-none">
+                <div class="card shadow-lg h-100 text-white border-0 ticket-count hover-card bg-primary">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <h2 class="card-title card-text p-3">
+                                Total Tickets 
+                                <i class="bi bi-clipboard2-data-fill"></i>
+                                @ViewBag.RecordsCount
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <a asp-controller="TicketManagement" asp-action="ViewOpenTickets" class="text-decoration-none">
+                <div class="card shadow-lg h-100 text-white border-0 bg-primary hover-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div class="p-2">
+                                <h6 class="card-title fs-5">View Open Tickets</h6>
+                                <h2 class="card-text">@ViewBag.OpenTicketsCount</h2>
+                            </div>
+                            <i class="bi bi-ticket-detailed card-icon fs-4"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <a asp-controller="TicketManagement" asp-action="ViewSolvedTickets" class="text-decoration-none">
+                <div class="card shadow-lg h-100 text-white border-0 bg-success hover-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div class="p-2">
+                                <h6 class="card-title fs-5">View Solved Tickets</h6>
+                                <h2 class="card-text">@ViewBag.SolvedTicketsCount</h2>
+                            </div>
+                            <i class="bi bi-check-circle card-icon fs-4"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <a asp-controller="TicketManagement" asp-action="ViewPendingTickets" class="text-decoration-none">
+                <div class="card shadow-lg h-100 text-white border-0 bg-warning hover-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div class="p-2">
+                                <h6 class="card-title fs-5">View Pending Tickets</h6>
+                                <h2 class="card-text">@ViewBag.PendingTicketsCount</h2>
+                            </div>
+                            <i class="bi bi-clock-history card-icon fs-4"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <a asp-controller="TicketManagement" asp-action="ViewOverDueTickets" class="text-decoration-none">
+                <div class="card shadow-lg h-100 text-white border-0 bg-danger hover-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div class="p-2">
+                                <h6 class="card-title fs-5">View Over Due Tickets</h6>
+                                <h2 class="card-text">@ViewBag.OverDueTicketsCount</h2>
+                            </div>
+                            <i class="bi bi-exclamation-triangle card-icon fs-4"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- Create Ticket -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <a asp-controller="TicketManagement" asp-action="TicketManagement" class="text-decoration-none">
+                <div class="card shadow-lg h-100 border-0 hover-card">
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <i class="bi bi-plus-circle fs-1 text-primary"></i>
+                        <h5 class="mt-3 text-dark">Create Ticket</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- View Ticket Records -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <a asp-controller="TicketManagement" asp-action="ViewTicketRecords" class="text-decoration-none">
+                <div class="card shadow-lg h-100 border-0 hover-card">
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <i class="bi bi-list-ul fs-1 text-success"></i>
+                        <h5 class="mt-3 text-dark">View Ticket Records</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Create SR for CRM -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <a asp-controller="CRMFormat" asp-action="CRMFORMAT" class="text-decoration-none">
+                <div class="card shadow-lg h-100 border-0 hover-card">
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <i class="bi bi-pencil-square fs-1 text-warning"></i>
+                        <h5 class="mt-3 text-dark">Create SR for CRM</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- View CRM Records -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <a asp-controller="CRMFormat" asp-action="ViewCRMRecords" class="text-decoration-none">
+                <div class="card shadow-lg h-100 border-0 hover-card">
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <i class="bi bi-archive fs-1 text-danger"></i>
+                        <h5 class="mt-3 text-dark">View CRM Records</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+

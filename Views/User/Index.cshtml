@@ -1,0 +1,55 @@
+﻿<div class="content-box h-auto text-center">
+    <img src="./images/CRM.jpg" alt="CRM Dashboard" class="dashboard-img" />
+    <h1 class="text-center mb-4">Welcome to User Dashboard!</h1>
+
+    <div class="row g-4 justify-content-center p-4">
+        <!-- Create Ticket -->
+        <div class="col-md-5 col-lg-3">
+            <a asp-controller="TicketManagement" asp-action="TicketManagement" class="text-decoration-none">
+                <div class="card text-center shadow-lg border-0 h-100 p-4 hover-card">
+                    <div class="mb-3">
+                        <i class="bi bi-plus-circle fs-1 text-primary"></i>
+                    </div>
+                    <h5 class="fw-bold">Create Ticket</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- View Ticket Records -->
+        <div class="col-md-5 col-lg-3">
+            <a asp-controller="TicketManagement" asp-action="ViewTicketRecords" class="text-decoration-none">
+                <div class="card text-center shadow-lg border-0 h-100 p-4 hover-card">
+                    <div class="mb-3">
+                        <i class="bi bi-list-ul fs-1 text-success"></i>
+                    </div>
+                    <h5 class="fw-bold">View Ticket Records</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- Create SR for CRM -->
+        <div class="col-md-5 col-lg-3">
+            <a asp-controller="CRMFormat" asp-action="CRMFORMAT" class="text-decoration-none">
+                <div class="card text-center shadow-lg border-0 h-100 p-4 hover-card">
+                    <div class="mb-3">
+                        <i class="bi bi-clipboard-plus fs-1 text-warning"></i>
+                    </div>
+                    <h5 class="fw-bold">Create SR for CRM</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- View CRM Records -->
+        <div class="col-md-5 col-lg-3">
+            <a asp-controller="CRMFormat" asp-action="ViewCRMRecords" class="text-decoration-none">
+                <div class="card text-center shadow-lg border-0 h-100 p-4 hover-card">
+                    <div class="mb-3">
+                        <i class="bi bi-archive fs-1 text-danger"></i>
+                    </div>
+                    <h5 class="fw-bold">View CRM Records</h5>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+

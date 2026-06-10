@@ -1,0 +1,212 @@
+﻿<div class="content-box">
+    <div class="p-4">
+        @if (Context.Session.GetString("Role") == "Admin")
+        {
+            <div class="my-4 ">
+                <a class="btn-primary text-decoration-none border-3  rounded p-2 text-white" asp-controller="Admin" asp-action="Index"> Back To Dashboard </a>
+            </div>
+        }
+        else if (Context.Session.GetString("Role") == "Supervisor")
+        {
+            <div class="my-4">
+                <a class="btn-primary text-decoration-none border-3 rounded p-2 text-white" asp-controller="Supervisor" asp-action="Index"> Back To Dashboard </a>
+            </div>
+        }
+        else if (Context.Session.GetString("Role") == "User")
+        {
+            <div class="my-4">
+                <a class="btn-primary text-decoration-none border-3 rounded p-2 text-white" asp-controller="User" asp-action="Index"> Back To Dashboard </a>
+            </div>
+        }
+        <h2 class="mt-4">Pending Tickets List</h2>
+        <div class="table-scroll-top">
+            <div class="scroll-sync"></div>
+        </div>
+        <!-- Display Records -->
+        <div class="table-scroll-wrapper table-responsive">
+            <table class="data-table table-bordered table table-hover tablet desktop display nowrap" id="pendingTicket-rcords" width="100%">
+                <thead>
+                    <tr>
+                        <th class="bg-black text-white text-center">SrNo</th>
+                        <th class="bg-black text-white text-center">Action</th>
+                        <th class="bg-black text-white text-center">Name</th>
+                        <th class="bg-black text-white text-center">Ticket Number</th>
+                        <th class="bg-black text-white text-center">Ticket Status</th>
+                        <th class="bg-black text-white text-center">SLA Status</th>
+                        <th class="bg-black text-white text-center">Calling Number</th>
+                        <th class="bg-black text-white text-center">Type Of Caller</th>
+                        <th class="bg-black text-white text-center">Customer Segment</th>
+                        <th class="bg-black text-white text-center">Type Of Call</th>
+                        <th class="bg-black text-white text-center">Category</th>
+                        <th class="bg-black text-white text-center">Sub Category</th>
+                        <th class="bg-black text-white text-center">Sub Sub Category</th>
+
+                        <th class="bg-black text-white text-center">Customer Name</th>
+                        <th class="bg-black text-white text-center">Phone No</th>
+                        <th class="bg-black text-white text-center">Email</th>
+                        <th class="bg-black text-white text-center">Agent Name</th>
+                        <th class="bg-black text-white text-center">Request Details</th>
+                        <th class="bg-black text-white text-center">Remarks</th>
+
+                        <th class="bg-black text-white text-center">Level Of Conflict</th>
+                        <th class="bg-black text-white text-center">Service Level</th>
+                        <th class="bg-black text-white text-center">Assigne</th>
+                        <th class="bg-black text-white text-center">Re-Assigne</th>
+                        <th class="bg-black text-white text-center">Resolver</th>
+                        <th class="bg-black text-white text-center">Channel</th>
+                        <th class="bg-black text-white text-center">Comment</th>
+
+                        <th class="bg-black text-white text-center">Date Created</th>
+                        <th class="bg-black text-white text-center">Esclated Date</th>
+                        <th class="bg-black text-white text-center">Resolved Date</th>
+                        <th class="bg-black text-white text-center">Close Date</th>
+                        <th class="bg-black text-white text-center">Date Submitted</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.PendingTickets.Count != null && ViewBag.PendingTickets.Count > 0)
+                    {
+                        // Used for loop for better perfomance and it is start with 0 for a reason
+                        for (int i = 0; i < ViewBag.PendingTickets.Count; i++)
+                        {
+                            var record = ViewBag.PendingTickets[i];
+                            <tr>
+                                <td class="bg-s max-w-fit text-center">@(i + 1)</td>
+                                <td class="bg-s max-w-fit text-center">
+                                    <a asp-action="ViewTicketRecord" asp-controller="TicketManagement" asp-route-id="@record.Id" class="btn btn-sm btn-outline-primary">View</a>
+                                    @if (Context.Session.GetString("Role") == "Admin" || Context.Session.GetString("Role") == "Supervisor")
+                                    {
+                                        <a asp-action="EditTicketRecord" asp-route-id="@record.Id" class="btn btn-sm btn-outline-primary">
+                                            <i class="bi bi-pencil-square"></i> Edit
+                                        </a>
+                                    }
+                                </td>
+                                <td class="bg-s max-w-fit text-center">@record.Name</td>
+                                <td class="bg-s max-w-fit text-center">@record.TicketNumber</td>
+                                <td class="bg-s max-w-fit text-center">@record.TicketStatus</td>
+                                <td class="bg-s max-w-fit text-center">@record.SLAStatus</td>
+                                <td class="bg-s max-w-fit text-center">@record.CallingNumber</td>
+                                <td class="bg-s max-w-fit text-center">@record.TypeOfCaller</td>
+                                <td class="bg-s max-w-fit text-center">@record.CustomerSegment</td>
+                                <td class="bg-s max-w-fit text-center">@record.TypeOfCall</td>
+                                <td class="bg-s max-w-fit text-center">@record.Category</td>
+                                <td class="bg-s max-w-fit text-center">@record.SubCategory</td>
+                                <td class="bg-s max-w-fit text-center">@record.SubSubCategory</td>
+
+                                <td class="bg-s max-w-fit text-center">@record.CustomerName</td>
+                                <td class="bg-s max-w-fit text-center">@record.PhoneNo</td>
+                                <td class="bg-s max-w-fit text-center">@record.Email</td>
+                                <td class="bg-s max-w-fit text-center">@record.AgentName</td>
+                                <td class="bg-s max-w-fit text-center">@record.RequestDetails</td>
+                                <td class="bg-s max-w-fit text-center">@record.Remarks</td>
+
+                                <td class="bg-s max-w-fit text-center">@record.LevelOfConflict</td>
+                                <td class="bg-s max-w-fit text-center">@record.ServiceLevel</td>
+                                <td class="bg-s max-w-fit text-center">@record.Assignee</td>
+                                <td class="bg-s max-w-fit text-center">@record.ReAssignee</td>
+                                <td class="bg-s max-w-fit text-center">@record.Resolver</td>
+                                <td class="bg-s max-w-fit text-center">@record.Channel</td>
+                                <td class="bg-s max-w-fit text-center">@record.Comment</td>
+
+
+                                <td class="bg-s max-w-fit text-center">
+                                    @(record.CreatedDateTime?.ToString("dd-MM-yyyy hh:mm tt") ?? "")
+                                </td>
+                                <td class="bg-s max-w-fit text-center">
+                                    @(record.EscalatedDateTime?.ToString("dd-MM-yyyy hh:mm tt") ?? "")
+                                </td>
+                                <td class="bg-s max-w-fit text-center">
+                                    @(record.ResolvedDateTime?.ToString("dd-MM-yyyy hh:mm tt") ?? "")
+                                </td>
+                                <td class="bg-s max-w-fit text-center">
+                                    @(record.ClosedDateTime?.ToString("dd-MM-yyyy hh:mm tt") ?? "")
+                                </td>
+                                <td class="m-2 max-w-fit text-center">
+                                    @(record.DateTimeSubmitted.ToString("dd-MM-yyyy hh:mm tt") ?? "")
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    // Initialize DataTables with scrollX
+    let tableWrapper = document.querySelector('.table-scroll-wrapper');
+    let scrollTopDiv = document.querySelector('.table-scroll-top');
+
+    scrollTopDiv.scrollLeft = tableWrapper.scrollLeft;
+
+    // Keep both scrolls in sync
+    scrollTopDiv.addEventListener('scroll', function () {
+        tableWrapper.scrollLeft = scrollTopDiv.scrollLeft;
+    });
+    tableWrapper.addEventListener('scroll', function () {
+        scrollTopDiv.scrollLeft = tableWrapper.scrollLeft;
+    });
+
+    // View Tciket Records jQuery:
+    $(document).ready(function () {
+        if ($('#pendingTicket-rcords tbody tr').length > 0) {
+            $('#pendingTicket-rcords').DataTable({
+                "pageLength": 10,
+                "order": [],
+                responsive: true,
+                fixedHeader: true,
+                columnDefs: [
+                    { responsivePriority: 1, targets: 0 },
+                    { responsivePriority: 2, targets: -1 }
+                ],
+                "scrollX": true,
+                responsive: {
+                    breakpoints: [
+                        { name: 'desktop', width: Infinity },
+                        { name: 'tablet', width: 1024 },
+                        { name: 'fablet', width: 768 },
+                        { name: 'phone', width: 480 }
+                    ]
+                }
+            });
+        } else {
+            console.log("No data found. Table not initialized.");
+        }
+    });
+</script>

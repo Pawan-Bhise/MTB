@@ -1,0 +1,613 @@
+﻿@model PMEHCRM.Models.TicketManagement;
+
+@{
+    ViewData["Title"] = "ViewRecord";
+}
+
+<div class="content-box">
+    <div class=" p-4">
+        @if (Context.Session.GetString("Role") == "Admin")
+        {
+            <div class="my-4 ">
+                <a class="btn-primary text-decoration-none border-3  rounded p-2 text-white" asp-controller="TicketManagement" asp-action="ViewTicketRecords"> Back To Ticket Records </a>
+            </div>
+        }
+        else if (Context.Session.GetString("Role") == "Supervisor")
+        {
+            <div class="my-4">
+                <a class="btn-primary text-decoration-none border-3 rounded p-2 text-white" asp-controller="TicketManagement" asp-action="ViewTicketRecords"> Back To Ticket Records  </a>
+            </div>
+        }
+        else if (Context.Session.GetString("Role") == "User")
+        {
+            <div class="my-4">
+                <a class="btn-primary text-decoration-none border-3 rounded p-2 text-white" asp-controller="TicketManagement" asp-action="ViewTicketRecords"> Back To Ticket Records  </a>
+            </div>
+        }
+        <form class="ticket-mgmt p-4 border-3 rounded" enctype="multipart/form-data">
+            <!--  Anti Forgery Token to ensure a valid post! -->
+            @Html.AntiForgeryToken()
+
+            <div class="form-headings bg-primary text-white text-center m-2 p-1 rounded">
+                <h4 class="">Ticket Management Form</h4>
+            </div>
+            <!-- Calling Details -->
+            <h4 class="text-dark mb-3">Calling Details</h4>
+            <div class="row justify-content-center align-items-center">
+                <div class="form-group col-md-6 p-2">
+                    <label asp-for="Name">Name</label>
+                    <input asp-for="Name" class="form-control" placeholder="Enter name" readonly />
+                </div>
+
+                <div class="form-group col-md-6 p-2">
+                    <label asp-for="CallingNumber">Calling Number</label>
+                    <input asp-for="CallingNumber" class="form-control" placeholder="Enter calling number" readonly />
+                </div>
+
+                <div class="form-group col-md-6 p-2">
+                    <label asp-for="TypeOfCaller">Type Of Caller</label>
+                    <select asp-for="TypeOfCaller" id="typeOfCaller" class="form-control" readonly disabled>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6 p-2">
+                    <label asp-for="CustomerSegment"> Customer Segment</label>
+                    <select asp-for="CustomerSegment" id="customerSegment" class="form-control" readonly disabled></select>
+                </div>
+            </div>
+
+            <!-- Type of Call and Categories -->
+            <h4 class="mb-3">Type of Call and Categories</h4>
+            <div class="row justify-content-center align-items-center">
+                <div class="form-group col-md-6 p-2">
+                    <label asp-for="TypeOfCall">Type Of Call</label>
+                    <select asp-for="TypeOfCall" id="typeOfCall" class="form-control" readonly disabled></select>
+                </div>
+
+                <div class="form-group col-md-6 p-2">
+                    <label asp-for="Category">Category</label>
+                    <select asp-for="Category" id="category" class="form-control" readonly disabled></select>
+                </div>
+
+                <div class="form-group col-md-6 p-2">
+                    <label asp-for="SubCategory">Sub Category</label>
+                    <select asp-for="SubCategory" id="subCategory" class="form-control" readonly disabled></select>
+                </div>
+
+                <div class="form-group col-md-6 p-2">
+                    <label asp-for="SubSubCategory">Sub-Sub Category</label>
+                    <select asp-for="SubSubCategory" id="subSubCategory" class="form-control" readonly disabled></select>
+                </div>
+            </div>
+
+            <!-- Radio Options -->
+            <div class="form-group row p-2">
+                <label>Select Option</label>
+                <div class="form-check mx-2 col">
+                    <input class="form-check-input" asp-for="SrOrTicket" type="radio" id="openSrOption"
+                           value="Open SR" readonly disabled />
+                    <label class="form-check-label">Open SR</label>
+                </div>
+
+                <div class="form-check mx-2 col">
+                    <input class="form-check-input" asp-for="SrOrTicket" type="radio" id="raiseTicketOption"
+                           value="Raise Ticket" readonly disabled />
+                    <label class="form-check-label">Raise Ticket</label>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+            <!-- Customer Info -->
+            <div id="customerInfoSection" style="display: none;">
+                <h4 class="mb-3 form-headings ">Customer Information</h4>
+                <div class="row justify-content-center align-items-center">
+                    <div class="form-group col-md-6">
+                        <label asp-for="CustomerName">Customer Name</label>
+                        <input asp-for="CustomerName" id="customerName" placeholder="Enter customer name" class="form-control" readonly />
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="PhoneNo">Phone No</label>
+                        <input asp-for="PhoneNo" id="phoneNo" placeholder="Enter phone number" class="form-control" readonly />
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" id="email" placeholder="Enter email" class="form-control" readonly />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="AgentName">Agent Name</label>
+                        <input asp-for="AgentName" id="agentName" class="form-control" value="@ViewBag.AgentName" readonly readonly />
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="RequestDetails">Request Details</label>
+                        <textarea asp-for="RequestDetails" id="requestDetails" placeholder="Enter request or complaint details" class="form-control" rows="4" readonly></textarea>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="Remarks">Remarks</label>
+                        <textarea asp-for="Remarks" class="form-control" id="remarks" placeholder="Enter remarks" rows="4" readonly></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ticket Info Section -->
+            <div id="ticketManagementSection" style="display: none;">
+                <div class="row justify-content-center align-items-center">
+                    <div class="form-group p-2 col-md-6">
+                        <label asp-for="TicketNumber">Ticket Number</label>
+                        <input asp-for="TicketNumber" id="ticketNumber" value="@($"{Model.TicketNumber}")" class="form-control" readonly />
+                    </div>
+
+                    <div class="form-group p-2 col-md-6">
+                        <label asp-for="LevelOfConflict">Level Of Conflict</label>
+                        <select asp-for="LevelOfConflict" id="levelOfConflict" class="form-control" readonly disabled>
+                            <option>High</option>
+                            <option>Medium</option>
+                            <option>Low</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group p-2 col-md-6">
+                        <label asp-for="TicketStatus">Ticket Status</label>
+                        <select asp-for="TicketStatus" id="ticketStatus" class="form-control" readonly disabled>
+                            <option>Open</option>
+                            <option>Reopen</option>
+                            <option>Pending</option>
+                            <option>Waiting for Customer</option>
+                            <option>Escalate</option>
+                            <option>Resolve</option>
+                            <option>Close</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group p-2 col-md-6">
+                        <label asp-for="CreatedDateTime">Created Date and Time</label>
+                        <input asp-for="CreatedDateTime" id="createdDateTime" type="datetime" class="form-control" readonly value="@(Model.CreatedDateTime?.ToString("dd-MM-yyyy hh:mm tt") ?? " ")" />
+                    </div>
+
+                    <div class="form-group p-2 col-md-6">
+                        <label asp-for="EscalatedDateTime">Escalated Date and Time</label>
+                        <input asp-for="EscalatedDateTime" type="datetime" id="escalatedDateTime" class="form-control" readonly value="@(Model.EscalatedDateTime?.ToString("dd-MM-yyyy hh:mm tt") ?? " ")">
+                    </div>
+
+                    <div class="form-group p-2 col-md-6">
+                        <label asp-for="ResolvedDateTime">Resolved Date and Time</label>
+                        <input asp-for="ResolvedDateTime" type="datetime" id="resolvedDateTime"
+                               class="form-control" readonly value="@Model.ResolvedDateTime?.ToString("dd-MM-yyyy hh:mm tt")">
+                    </div>
+
+                    <div class="form-group p-2 col-md-6">
+                        <label asp-for="ClosedDateTime">Close Date and Time</label>
+                        <input asp-for="ClosedDateTime" type="datetime" id="closeDateTime" class="form-control" readonly value="@(Model.ClosedDateTime?.ToString("dd-MM-yyyy hh:mm tt") ?? " ")">
+                    </div>
+
+                    <div class="form-group p-2 col-md-6">
+                        <label asp-for="ServiceLevel">Service Level</label>
+                        <select asp-for="ServiceLevel" id="serviceLevel" class="form-control" readonly disabled>
+                            <option>Level-1 (Call Center)</option>
+                            <option>Level-2 (Operations Team)</option>
+                            <option>Level-2 (KYC Team)</option>
+                            <option>Level-3 (Digital Finance)</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group p-2 col-md-6">
+                        <label asp-for="Assignee">Assignee</label>
+                        <input asp-for="Assignee" type="text" id="assignee" class="form-control" placeholder="Enter assignee" readonly>
+                    </div>
+
+                    <div class="form-group p-2 col-md-6">
+                        <label asp-for="ReAssignee">Re-Assignee</label>
+                        <input asp-for="ReAssignee" type="text" id="reAssignee" class="form-control" placeholder="Enter re-assignee" readonly>
+                    </div>
+
+
+
+                    <div class="form-group p-2 col-md-6">
+                        <label asp-for="Resolver">Resolver</label>
+                        <select asp-for="Resolver" id="resolver" class="form-control" asp-items="@ViewBag.Resolver" readonly disabled>
+                        </select>
+                    </div>
+
+                    <div class="form-group p-2 col-md-6">
+                        <label asp-for="SLAStatus">SLA Status</label>
+                        <input asp-for="SLAStatus" type="text" id="slaStatus" class="form-control" readonly>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Channel -->
+            <div class="row justify-content-center align-items-center p-2">
+                <div class="form-group col-md-6">
+                    <label asp-for="Channel">Channel</label>
+                    <select asp-for="Channel" id="channel" class="form-control" readonly disabled>
+                        <option>Call Center</option>
+                        <option>Mail</option>
+                        <option>Viber</option>
+                        <option>Facebook Messenger</option>
+                        <option>Website</option>
+                        <option>Phone</option>
+                    </select>
+                </div>
+
+                <!-- Attachments -->
+                <div class="form-group col-md-6">
+                    <label asp-for="Attachments">Attached Photos/Videos</label>
+                    <span class="form-text text-muted">Uploaded images/videos (Max 10MB each)</span>
+
+                    <!-- Show already uploaded files -->
+                    @if (Model.Attachments != null && Model.Attachments.Any())
+                    {
+                        <div class="fw-bold">Previously Uploaded:</div>
+                        <div class="d-flex flex-wrap justify-content-center align-items-center">
+                            @foreach (var file in Model.Attachments)
+                            {
+                                // Get File name that user uploaded
+                                var nameWithoutExt = System.IO.Path.GetFileNameWithoutExtension(file.FileName);
+                                var parts = nameWithoutExt.Split('-');
+                                var displayName = parts[0];
+                                var extension = System.IO.Path.GetExtension(file.FileName);
+
+                                // Diplaying user's file name
+                                <a href="@file.FilePath" class="btn btn-primary m-2" target="_blank">
+                                    @($"{displayName}{extension}")
+                                </a>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group p-2 col-md-12">
+                    <label for="NewComment">Add Comment</label>
+                    <textarea asp-for="Comment" class="form-control" row="3" placeholder="Write your comment here..." readonly disabled></textarea>
+                </div>
+
+                <!-- Comment History -->
+                @if (!string.IsNullOrEmpty(Model.Comment))
+                {
+                    <div class="form-group p-2 col-md-12">
+                        <label>Comment History</label>
+                        <ul class="list-group overflow-auto comment-box">
+                            <li class="list-group-item m-2 border rounded">
+                                <div>
+                                    Created By:
+                                    <span class="fw-bold">@ViewBag.AgentName</span>,
+                                    Ticket Created Date:
+                                    <span class="fw-bold">
+                                        @(Model.CreatedDateTime?.ToString("dd-MM-yyyy hh:mm tt") ?? "")
+                                    </span>,
+                                    Last Modified By:
+                                    <span class="fw-bold">@(ViewBag.ModifiedBy ?? "None!")</span>,
+                                    Last Modified Date:
+                                    <span class="fw-bold">@(ViewBag.ModifiedDate?.ToString("dd-MM-yyyy hh:mm tt") ?? "None!")</span>
+                                </div>
+                                <div>
+                                    <p>Comment: <span class="fw-bold">@Model.Comment</span></p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                }
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+
+    // Static Dropdown Values
+     const typeOfCallerOptions = [
+        "Consumer",
+        "Super Agent",
+        "CSE",
+        "Agent",
+        "Branch Super Agent",
+        "BSE",
+        "Branch Agent",
+        "Merchant"
+    ];
+
+     const customerSegmentOptions = [
+         "Agent",
+         "Primer",
+         "Elite",
+         "Member",
+         "Normal",
+         "Ruby/VIP"
+     ];
+
+     const typeOfCallOptions = [
+         "Complaints",
+         "Request",
+         "Enquiries"
+     ];
+
+     const categoryOptions = {
+         "Complaints": [
+             "Cash In",
+             "Cash Out",
+             "Transfer",
+             "Bank Account Linkage",
+             "Top Up",
+             "Fund Related Case",
+             "Disputes",
+             "Transaction Limit",
+             "Bill Payment",
+             "Application Log In",
+             "Registration",
+             "OTP",
+             "Cash Code (Complaint)",
+             "Fund Transfer",
+             "Send Money",
+             "eMoney Manage",
+             "Device Error",
+             "Promotion",
+             "Account Verify"
+         ],
+         "Request": [
+             "Agent Apply",
+             "Statement",
+             "Reversal",
+             "Account Close",
+             "Information Request",
+             "Phone Number Change",
+             "Account Freeze/Suspense/Block",
+             "Pin Lock",
+             "Cash Code (Request)",
+             "Request to be Agent",
+             "CSE Not Assisting to Agent",
+             "Agent Not Assist to Customer",
+             "Agent Complaints to CSE",
+             "Agent Complaints Target and Incentive",
+             "Request to be Approve for Consumer"
+         ],
+         "Enquiries": [
+             "Basic Enquiries"
+         ]
+     };
+
+     const subCategoryOptions = {
+         "Cash In": [
+             "Bank Account Cash In Transaction",
+             "MPU Cash In Transaction",
+             "Complaints for Agent Cash In Transaction"
+         ],
+         "Cash Out":[
+             "Bank Account Cash Out Transaction",
+             "Unregister to Unregister Cash Out Transaction",
+             "Register to Unregister Cash Out Transaction",
+             "Register Customer To Register Customer"
+         ],
+         "Transfer":[
+             "Register Customer To Unregister Customer ",
+             "Unregister Customer To Unregister Customer"
+         ],
+         "Bank Account Linkage":[
+             "Bank Account Linkage for Consumer",
+             "Bank Account Unlinkage Consumer"
+         ],
+         "Top Up": [
+             "Top Up Error from Customer Wallet",
+             "Top Up Error from Merchant Wallet",
+             "Top Up Error from Agent Wallet",
+             "YESC from Customer Wallet",
+             "MESC from Customer Wallet",
+             "ESE-NPT from Customer Wallet",
+             "5BB from Customer Wallet",
+             "Canal+ from Customer Wallet"
+         ],
+         "Fraud Related Case":[
+             "Customer Fraud Transaction",
+             "Agent Fraud Transaction",
+             "Merchant Fraud Transaction"
+         ],
+          "Disputes": [
+              "Top Up Disputes Transaction (Customer)",
+              "Bill Payment Disputes Transaction (YESC, MESC, ESE-NPT)",
+              "Bill Payment Disputes Transaction (5BB)",
+             "Top Up Disputes Transaction (Agent)",
+             "Top Up Disputes Transaction (Merchant)"
+         ],
+         "Transaction Limit": [
+             "Complaints for Transaction limit"
+         ],
+         "Bill Payment": [
+             "YESC from Agent Wallet",
+             "MESC from Agent Wallet",
+             "ESE-NPT from Agent Wallet",
+             "Canal+ from Agent Wallet",
+             "YESC from Merchant Wallet",
+             "MESC from Merchant Wallet",
+             "ESE-NPT from Merchant Wallet",
+             "Canal+ from Merchant Wallet"
+         ],
+         "Application Log In": [
+             "Application login Error",
+             "Firebase issues",
+             "System Failure",
+             "System Maintainance",
+             "Unable to download the application"
+
+         ],
+         "Registration": [
+             "Complain for Account register"
+         ],
+         "OTP":[
+             "OTP receipt error ( Bank Account Cash In)",
+             "OTP receipt error ( Bank Account Linkage)",
+             "OTP receipt error ( Application Log In)",
+             "OTP receipt error ( Account Registeration)",
+             "OTP receipt error ( Forgot Pin )"
+         ],
+         "Cash Code (Complaint)": [
+             "Complaint for Cash Code error",
+         ],
+         "Fund Transfer": [
+             "Complaints for Fund Transfer Transaction"
+         ],
+         "Send Money": [
+             "Complaints for Send Money Unregistered to Unregistered Transaction"
+         ],
+         "eMoney Manage": [
+             "Complaints for eMoney Manage Transaction"
+         ],
+         "Device Error":[
+             "Phone Device Error"
+         ],
+         "Promotion":[
+                 "Meter Bill",
+                 "Post Like and Share"
+         ],
+         "Account Verify":[
+             "Account Verify"
+         ],
+         "Agent Apply":[
+             "Agent Apply"
+         ],
+         "Statement": [
+             "Wallet Statement for Customer",
+             "Wallet Statement for Super Agent",
+             "Wallet Statement for Agent",
+             "Wallet Statement for CSE",
+             "Wallet Statement for Merchant"
+         ],
+         "Reversal": [
+             "Reversal Request for Customer",
+             "Reversal Request for Agent",
+             "Reversal Request for Merchant"
+         ],
+         "Account Close": [
+             "Account Close for Customer",
+             "Account Close for Super Agent",
+             "Account Close for Agent",
+             "Account Close for CSE",
+             "Account Close for Branch Super Agent",
+             "Account Close for Branch Agent",
+             "Account Close for BSE"
+         ],
+         "Information Request": [
+             "Information Request for Customer",
+             "Information Request for Agent",
+             "Information Request for Merchant"
+         ],
+         "Phone Number Change": [
+             "Change Phone Number for Customer",
+             "Change Consumer Account for Phone Lost",
+             "Change Phone Number for Super Agent",
+             "Change Phone Number for Agent",
+             "Change Phone Number for CSE",
+             "Change Phone Number for Merchant"
+         ],
+         "Account Freeze/Suspense/Block": [
+             "Request to Customer Account for Fraud Case",
+             "Request to Agent Account for Fraud Case",
+             "Request to Merchant Account for Fraud Case"
+         ],
+         "Pin Lock": [
+             "Request to Cutomer Pin unlock",
+             "Request to Super Agent Pin unlock",
+             "Request to Agent Pin unlock",
+             "Request to CSE Pin unlock",
+             "Request to BSA Pin unlock",
+             "Request to Branch Agent Pin unlock",
+             "Request to BSE Pin unlock"
+         ],
+         "Cash Code (Request)": [
+             "Request for Cash Code Resend",
+             "Request for Cash Code Suspended",
+             "Request for Cash Code Release"
+         ],
+         "Request to be Agent": [
+             "Request to be Agent"
+         ],
+         "CSE Not Assisting to Agent": [
+             "Request for CSE Not Assisting to Agent"
+         ],
+         "Agent Not Assist to Customer": [
+             "Request for Agent Not Assist to Customer"
+         ],
+         "Agent Complaints to CSE": [
+             "Agent Complaints to CSE"
+         ],
+         "Agent Complaints Target and Incentive": [
+             "Agent Complaints Target and Incentive"
+         ],
+            "Request to be Approve for Consumer":[
+            "Request to be Approve for Consumer"
+        ],
+         "Basic Enquiries": [
+             "Basic Enquiries For Customer",
+             "Basic Enquiries For Super Agent",
+             "Basic Enquiries For Agent",
+             "Basic Enquiries For CSE"
+         ]
+     };
+
+     const subSubCategoryOptions = {
+         "Bank Account Cash In Transaction": [
+             // "Option 1",
+             // "Option 2"
+         ],
+         // "MPU Cash In Transaction": [
+         //     "Option 3",
+         //     "Option 4"
+         // ]
+     };
+
+     // Populate dropdowns
+     function populateDropdown(id, options) {
+         const select = document.getElementById(id);
+         select.innerHTML = '';
+         options.forEach(option => {
+             const opt = document.createElement('option');
+             opt.value = option;
+             opt.textContent = option;
+             select.appendChild(opt);
+         });
+     }
+
+     // Populate dropdowns for Type of Caller, Customer Segment, and Type of Call
+     populateDropdown('typeOfCaller', typeOfCallerOptions);
+     populateDropdown('customerSegment', customerSegmentOptions);
+     populateDropdown('typeOfCall', Object.keys(categoryOptions));
+
+     // Populate category dropdown
+     document.getElementById('typeOfCall').addEventListener('change', function () {
+         const selectedTypeOfCall = this.value;
+         const categories = categoryOptions[selectedTypeOfCall] || [];
+         populateDropdown('category', categories);
+         document.getElementById('category').dispatchEvent(new Event('change'));
+     });
+
+     // Event listener for category to update subCategory
+     document.getElementById('category').addEventListener('change', function () {
+         const selectedCategory = this.value;
+         const subCategories = subCategoryOptions[selectedCategory] || [];
+         populateDropdown('subCategory', subCategories);
+         document.getElementById('subCategory').dispatchEvent(new Event('change'));
+     });
+
+     // Event listener for subCategory to update subSubCategory
+     document.getElementById('subCategory').addEventListener('change', function () {
+         const selectedSubCategory = this.value;
+         const subSubCategories = subSubCategoryOptions[selectedSubCategory] || [];
+         populateDropdown('subSubCategory', subSubCategories);
+     });
+
+     // Populate initial dropdowns
+     document.getElementById('typeOfCall').dispatchEvent(new Event('change'));
+
+     // Run this on page load
+     if ($('#openSrOption').is(':checked')) {
+         $('#customerInfoSection').show();
+         $('#ticketManagementSection').hide();
+     }
+
+     if ($('#raiseTicketOption').is(':checked')) {
+         $('#customerInfoSection').hide();
+         $('#ticketManagementSection').show();
+     }
+</script>

@@ -1,0 +1,237 @@
+﻿@using Microsoft.AspNetCore.Http
+@model PMEHCRM.Models.ViewModels.CRMFormatViewModel
+
+<div class="content-box">
+    <div class="p-4">
+        @if (Context.Session.GetString("Role") == "Admin")
+        {
+            <div class="d-flex">
+                <div class="mx-2">
+                    <a class="btn btn-primary" asp-controller="Admin" asp-action="Index"> Back To Dashboard </a>
+                </div>
+                <div class="mx-2">
+                    <a asp-action="CRMFORMAT" class="btn btn-primary">
+                        <i class="bi bi-plus-circle"></i> Create New Ticket
+                    </a>
+                </div>
+            </div>
+        }
+        else if (Context.Session.GetString("Role") == "Supervisor")
+        {
+            <div class="d-flex">
+                <div class="mx-2">
+                    <a class="btn btn-primary" asp-controller="Supervisor" asp-action="Index"> Back To Dashboard </a>
+                </div>
+                <div class="mx-2">
+                    <a asp-action="CRMFORMAT" class="btn btn-primary">
+                        <i class="bi bi-plus-circle"></i> Create New Ticket
+                    </a>
+                </div>
+            </div>
+        }
+        else if (Context.Session.GetString("Role") == "User")
+        {
+            <div class="d-flex">
+                <div class="mx-2">
+                    <a class="btn btn-primary" asp-controller="User" asp-action="Index"> Back To Dashboard </a>
+                </div>
+                <div class="mx-2">
+                    <a asp-action="CRMFORMAT" class="btn btn-primary">
+                        <i class="bi bi-plus-circle"></i> Create New Ticket
+                    </a>
+                </div>
+            </div>
+        }
+        <h2 class="m-2">CRM Records</h2>
+
+        <!-- Modal -->
+        <div class="modal fade" id="ticketModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Success</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>Your SR has been created successfully!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Filter Form -->
+        <form asp-action="ViewCRMRecords" method="get" class="form-inline  crm-mgmt filters">
+            <div class="row bg-secondary-subtle border-5 rounded justify-content-between align-items-center ">
+                <div class="d-flex justify-content-start align-items-center d-inline-block col-md-6">
+                    <button type="submit" class="btn-primary m-2 rounded border p-1 fs-6" name="actionType" value="view">Apply Filters</button>
+                    <a type="reset" asp-action="ViewCRMRecords" class="text-decoration-none btn-primary fs-6 m-2 rounded border p-1">Clear Filters</a>
+                    @if (Context.Session.GetString("Role") == "Admin" || Context.Session.GetString("Role") == "Supervisor")
+                    {
+                        <button type="submit" class="btn-success fs-6 m-2 rounded border p-1" name="actionType" value="download">Download Report</button>
+                    }
+                </div>
+                <div class="form-group d-inline-block  w-auto text-center">
+                    <label for="CallingNumber" class="mr-2">Calling Number:</label>
+                    <input type="text" id="CallingNumber" name="callingNumber" class="form-control" value="@Model.CallingNumber" placeholder="Eample: +950000000000" />
+                </div>
+                <div class="form-group d-inline-block  w-auto text-center">
+                    <label asp-for="TypeOfCall" class="mr-2">Type of Call:</label>
+                    <select asp-for="TypeOfCall" id="typeOfCall" class="form-control">
+                        <option selected value="">
+                            Select Type Of Call
+                        </option>
+                        <option value="Query">Query</option>
+                        <option value="Request">Request</option>
+                        <option value="Complaint">Complaint</option>
+                    </select>
+                </div>
+                <div class="form-group d-inline-block  w-auto text-center">
+                    <label for="DateSubmitted" class="mr-2">Date Submitted:</label>
+                    <input type="date" id="DateSubmitted" name="dateSubmitted" class="form-control" value="@Model.DateSubmitted?.ToString("yyyy-MM-dd")" />
+                </div>
+
+                <div class=" text-center  col-md-6">
+                    <p class="text-danger fs-6 ">Note: Please apply filters before downloading the report to get customized records!</p>
+                </div>
+            </div>
+        </form>
+
+        <div class="table-scroll-top">
+            <div class="scroll-sync"></div>
+        </div>
+        <!-- Display Records -->
+        <div class="table-scroll-wrapper">
+            <!-- Display Records -->
+            <table class="data-table table-bordered table table-hover tablet desktop display nowrap" id="CRM-records" width="100%">
+                <thead>
+                    <tr>
+                        <th class="bg-black text-white text-center">SrNo</th>
+                        <th class="bg-black text-white text-center">Action</th>
+                        <th class="bg-black text-white text-center">Name</th>
+                        <th class="bg-black text-white text-center">Calling Number</th>
+                        <th class="bg-black text-white text-center">Type Of Caller</th>
+                        <th class="bg-black text-white text-center">Customer Segment</th>
+                        <th class="bg-black text-white text-center">Type Of Call</th>
+                        <th class="bg-black text-white text-center">Category</th>
+                        <th class="bg-black text-white text-center">Sub Category</th>
+                        <th class="bg-black text-white text-center">Sub Sub Category</th>
+                        <th class="bg-black text-white text-center">Customer Name</th>
+                        <th class="bg-black text-white text-center">Phone No</th>
+                        <th class="bg-black text-white text-center">Email</th>
+                        <th class="bg-black text-white text-center">Agent Name</th>
+                        <th class="bg-black text-white text-center">Request Details</th>
+                        <th class="bg-black text-white text-center">Remarks</th>
+                        <th class="bg-black text-white text-center">Date Submitted</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Records != null && Model.Records.Count > 0)
+                    {
+                        // Used for loop for better perfomance and it is start with 0 for a reason
+                        for (int i = 0; i < Model.Records.Count; i++)
+                        {
+                            var record = Model.Records[i];
+                            <tr>
+                                <td>@(i + 1)</td>
+                                <td class="bg-s max-w-fit text-center">
+                                    <a asp-action="ViewCRMRecord" asp-controller="CRMFormat" asp-route-id="@record.Id" class="btn btn-sm btn-outline-primary">View</a>
+                                    @if (Context.Session.GetString("Role") == "Admin" || Context.Session.GetString("Role") == "Supervisor")
+                                    {
+                                        <a asp-action="EditCRMRecord" asp-route-id="@record.Id" class="btn btn-sm btn-outline-primary">
+                                            <i class="bi bi-pencil-square"></i> Edit
+                                        </a>
+                                    }
+                                </td>
+                                <td>@record.Name</td>
+                                <td>@record.CallingNumber</td>
+                                <td>@record.TypeOfCaller</td>
+                                <td>@record.CustomerSegment</td>
+                                <td>@record.TypeOfCall</td>
+                                <td>@record.Category</td>
+                                <td>@record.SubCategory</td>
+                                <td>@record.SubSubCategory</td>
+                                <td>@record.CustomerName</td>
+                                <td>@record.PhoneNo</td>
+                                <td>@record.Email</td>
+                                <td>@record.AgentName</td>
+                                <td>@record.RequestDetails</td>
+                                <td>@record.Remarks</td>
+                                <td>
+                                    @(record.DateTimeSubmitted.ToString("dd-MM-yyyy hh:mm tt") ?? " ")
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                            <td class="text-danger m-2 max-w-fit text-center">No records found...</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@if (TempData["SRCreated"] != null)
+{
+    <script>
+        $(document).ready(function () {
+            $("#ticketModal").modal("show");
+        });
+    </script>
+}
+<script>
+    // Initialize DataTables with scrollX
+    let tableWrapper = document.querySelector('.table-scroll-wrapper');
+    let scrollTopDiv = document.querySelector('.table-scroll-top');
+
+    scrollTopDiv.scrollLeft = tableWrapper.scrollLeft;
+
+    // Keeping both scrolls in sync
+    scrollTopDiv.addEventListener('scroll', function () {
+      tableWrapper.scrollLeft = scrollTopDiv.scrollLeft;
+    });
+    tableWrapper.addEventListener('scroll', function () {
+      scrollTopDiv.scrollLeft = tableWrapper.scrollLeft;
+    });
+        $(document).ready(function () {
+        if ($('#CRM-records tbody tr').length > 0) {
+            $('#CRM-records').DataTable({
+                    "pageLength": 10,
+                    "order": [],
+                    responsive:true,
+                     fixedHeader: true,
+                    columnDefs: [
+                        { responsivePriority: 1, targets: 0 },
+                        { responsivePriority: 2, targets: -1 }
+                    ],
+                    "scrollX": true,
+                    responsive: {
+                        breakpoints: [
+                            { name: 'desktop', width: Infinity },
+                            { name: 'tablet', width: 1024 },
+                            { name: 'fablet', width: 768 },
+                            { name: 'phone', width: 480 }
+                        ]
+                    }
+            });
+        } else {
+            console.log("No data found. Table not initialized.");
+        }
+    });
+</script>
