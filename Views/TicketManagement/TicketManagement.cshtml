@@ -292,7 +292,10 @@
         "Branch Super Agent",
         "BSE",
         "Branch Agent",
-        "Merchant"
+        "Merchant",
+        "Master Merchant",
+        "Outlet / Sub-Merchant",
+        "Single Merchant"
     ];
 
     const customerSegmentOptions = [
@@ -301,7 +304,8 @@
         "Elite",
         "Member",
         "Normal",
-        "Ruby/VIP"
+        "Ruby/VIP",
+        "Merchant"
     ];
 
     const typeOfCallOptions = [
@@ -316,7 +320,7 @@
             "Cash Out",
             "Transfer",
             "Bank Account Linkage",
-            "Top Up",
+            "Top up/ Data Pack",
             "Fund Related Case",
             "Disputes",
             "Transaction Limit",
@@ -334,6 +338,7 @@
         ],
         "Request": [
             "Agent Apply",
+            "Bill Payment",
             "Statement",
             "Reversal",
             "Account Close",
@@ -347,7 +352,8 @@
             "Agent Not Assist to Customer",
             "Agent Complaints to CSE",
             "Agent Complaints Target and Incentive",
-            "Request to be Approve for Consumer"
+            "Request to be Approve for Consumer",
+            "Gift Cards"
         ],
         "Enquiries": [
             "Basic Enquiries"
@@ -374,15 +380,10 @@
             "Bank Account Linkage for Consumer",
             "Bank Account Unlinkage Consumer"
         ],
-        "Top Up": [
-            "Top Up Error from Customer Wallet",
-            "Top Up Error from Merchant Wallet",
-            "Top Up Error from Agent Wallet",
-            "YESC from Customer Wallet",
-            "MESC from Customer Wallet",
-            "ESE-NPT from Customer Wallet",
-            "5BB from Customer Wallet",
-            "Canal+ from Customer Wallet"
+        "Top up/ Data Pack": [
+            "Top up/ Data pack Error From customer wallet",
+            "Top up/ Data pack Error From merchant wallet",
+            "Top up/ Data pack Error From agent wallet"
         ],
         "Fraud Related Case":[
             "Customer Fraud Transaction",
@@ -391,7 +392,7 @@
         ],
          "Disputes": [
              "Top Up Disputes Transaction (Customer)",
-             "Bill Payment Disputes Transaction (YESC, MESC, ESE-NPT)",
+             "Bill Paymen Disputes Transcation(Electricity Bill)",
              "Bill Payment Disputes Transaction (5BB)",
             "Top Up Disputes Transaction (Agent)",
             "Top Up Disputes Transaction (Merchant)"
@@ -400,14 +401,17 @@
             "Complaints for Transaction limit"
         ],
         "Bill Payment": [
-            "YESC from Agent Wallet",
-            "MESC from Agent Wallet",
-            "ESE-NPT from Agent Wallet",
-            "Canal+ from Agent Wallet",
-            "YESC from Merchant Wallet",
-            "MESC from Merchant Wallet",
-            "ESE-NPT from Merchant Wallet",
-            "Canal+ from Merchant Wallet"
+            "Electricity Bill - Ayeyarwaddy",
+            "Electricity Bill - Yangon",
+            "Electricity Bill - Naypyitaw",
+            "Electricity Bill - Mandalay",
+            "Electricity Bill - Mon",
+            "MElectricity Bill - Magway",
+            "Electricity Bill - Bago",
+            "Electricity Bill - Shan",
+            "Electricity Bill - Sagaing",
+            "Canal +",
+            "Skynet"
         ],
         "Application Log In": [
             "Application login Error",
@@ -448,6 +452,18 @@
         ],
         "Account Verify":[
             "Account Verify"
+        ],
+        "Gift Cards": [
+            "Viber Plus",
+            "Myanmar Net Awa Thone",
+            "Myanmar Net Prepaid",
+            "Free Fire Global",
+            "Steam Wallet Code (SG)",
+            "Apple iTunes",
+            "Hey Play",
+            "Warso Learn",
+            "Grab Driver / Biker PIN",
+            "MLBB"
         ],
         "Agent Apply":[
             "Agent Apply"
@@ -531,6 +547,371 @@
         ]
     };
 
+    // Scenario-specific overrides: key = "TypeOfCaller|CustomerSegment|Category"
+    const scenarioSubCategoryOverrides = {
+        "CSE|Agent|Disputes": [
+            "Bill Payment Disputes Transaction (YESC,MESC,ESE-NPT)",
+            "Gift Cards Dispute - Viber Plus",
+            "Gift Cards Dispute - Myanmar Net Awa Thone",
+            "Gift Cards Dispute - Myanmar Net Prepaid",
+            "Gift Cards Dispute - Free Fire Global",
+            "Gift Cards Dispute - Steam Wallet Code (SG)",
+            "Gift Cards Dispute - Apple iTunes",
+            "Gift Cards Dispute - Hey Play",
+            "Gift Cards Dispute - Warso Learn",
+            "Gift Cards Dispute - Grab Driver / Biker PIN",
+            "Gift Cards Dispute - MLBB"
+        ],
+        "Branch Super Agent|Agent|Disputes": [
+            "Bill Payment Disputes Transaction (YESC,MESC,ESE-NPT)",
+            "Gift Cards Dispute - Viber Plus",
+            "Gift Cards Dispute - Myanmar Net Awa Thone",
+            "Gift Cards Dispute - Myanmar Net Prepaid",
+            "Gift Cards Dispute - Free Fire Global",
+            "Gift Cards Dispute - Steam Wallet Code (SG)",
+            "Gift Cards Dispute - Apple iTunes",
+            "Gift Cards Dispute - Hey Play",
+            "Gift Cards Dispute - Warso Learn",
+            "Gift Cards Dispute - Grab Driver / Biker PIN",
+            "Gift Cards Dispute - MLBB"
+        ],
+        "Branch Agent|Agent|Disputes": [
+            "Bill Payment Disputes Transaction (YESC,MESC,ESE-NPT)",
+            "Gift Cards Dispute - Viber Plus",
+            "Gift Cards Dispute - Myanmar Net Awa Thone",
+            "Gift Cards Dispute - Myanmar Net Prepaid",
+            "Gift Cards Dispute - Free Fire Global",
+            "Gift Cards Dispute - Steam Wallet Code (SG)",
+            "Gift Cards Dispute - Apple iTunes",
+            "Gift Cards Dispute - Hey Play",
+            "Gift Cards Dispute - Warso Learn",
+            "Gift Cards Dispute - Grab Driver / Biker PIN",
+            "Gift Cards Dispute - MLBB"
+        ],
+        "BSE|Agent|Disputes": [
+            "Bill Payment Disputes Transaction (YESC,MESC,ESE-NPT)",
+            "Gift Cards Dispute - Viber Plus",
+            "Gift Cards Dispute - Myanmar Net Awa Thone",
+            "Gift Cards Dispute - Myanmar Net Prepaid",
+            "Gift Cards Dispute - Free Fire Global",
+            "Gift Cards Dispute - Steam Wallet Code (SG)",
+            "Gift Cards Dispute - Apple iTunes",
+            "Gift Cards Dispute - Hey Play",
+            "Gift Cards Dispute - Warso Learn",
+            "Gift Cards Dispute - Grab Driver / Biker PIN",
+            "Gift Cards Dispute - MLBB"
+        ],
+        "Master Merchant|Merchant|Disputes": [
+            "Fund Out (to Super Agent/ BSA)",
+            "Merchant Fund Out to Bank (Fund Settlement)",
+            "MMQR Received Payment",
+            "Received Payment (Scan / Receive Money)",
+            "Refund to Customer",
+            "MMQR Refund to Customer",
+            "Top up/ Data PAck",
+            "Bill Payment Disputes Transaction Canal+",
+            "Bill Payment Disputes Transaction Skynet",
+            "Bill Payment Disputes Transaction (Electricity Bill)",
+            "Merchant Cash Back Refund from Customer",
+            "Cash Back Campaign to Customer",
+            "Merchant Fund Out to Super Agent/ BSA"
+        ],
+        "Outlet / Sub-Merchant|Merchant|Disputes": [
+            "Fund Out (to Super Agent/ BSA)",
+            "Merchant Fund Out to Bank (Fund Settlement)",
+            "MMQR Received Payment",
+            "Received Payment (Scan / Receive Money)",
+            "Refund to Customer",
+            "MMQR Refund to Customer",
+            "Top up/ Data PAck",
+            "Bill Payment Disputes Transaction Canal+",
+            "Bill Payment Disputes Transaction Skynet",
+            "Bill Payment Disputes Transaction (Electricity Bill)",
+            "Merchant Cash Back Refund from Customer",
+            "Cash Back Campaign to Customer",
+            "Merchant Fund Out to Super Agent/ BSA"
+        ],
+        "Single Merchant|Merchant|Disputes": [
+            "Fund Out (to Super Agent/ BSA)",
+            "Merchant Fund Out to Bank (Fund Settlement)",
+            "MMQR Received Payment",
+            "Received Payment (Scan / Receive Money)",
+            "Refund to Customer",
+            "MMQR Refund to Customer",
+            "Top up/ Data PAck",
+            "Bill Payment Disputes Transaction Canal+",
+            "Bill Payment Disputes Transaction Skynet",
+            "Bill Payment Disputes Transaction (Electricity Bill)",
+            "Merchant Cash Back Refund from Customer",
+            "Cash Back Campaign to Customer",
+            "Merchant Fund Out to Super Agent/ BSA"
+        ],
+        "Master Merchant|Merchant|OTP": [
+            "OTP Receipt Error (Login)",
+            "OTP Receipt Error (Forgot Pin)",
+            "OTP Receipt Error (Change Pin)"
+        ],
+        "Master Merchant|Merchant|Device Error": [
+            "Phone Device Error"
+        ],
+        "Master Merchant|Merchant|Promotion": [
+            "Discount Campaign",
+            "Cashback Campaign",
+            "Promo Code Campaign"
+        ],
+        "Master Merchant|Merchant|Application Log IN": [
+            "Application Login Error",
+            "Firebase Issue",
+            "System Failure",
+            "System Maintainance",
+            "Unable To Download the application"
+        ],
+        "Master Merchant|Merchant|App Store Issue": [
+            "Can't search App in app store iOS & Andriod"
+        ],
+        "Master Merchant|Merchant|Registration": [
+            "Account Register"
+        ],
+        "Master Merchant|Merchant|Top up/ Data PAck": [
+            "Top up/ Data pack Error From customer wallet",
+            "Top up/ Data pack Error From merchant wallet",
+            "Top up/ Data pack Error From agent wallet"
+        ],
+        "Master Merchant|Merchant|Bill Payment": [
+            "Electricity Bill - Ayeyarwaddy",
+            "Electricity Bill - Yangon",
+            "Electricity Bill - Naypyitaw",
+            "Electricity Bill - Mandalay",
+            "Electricity Bill - Mon",
+            "Electricity Bill - Magway",
+            "Electricity Bill - Bago",
+            "Electricity Bill - Shan",
+            "Electricity Bill - Sagaing",
+            "Canal +",
+            "Skynet"
+        ],
+        "Master Merchant|Merchant|Transactions Limit": [
+            "Transactions Limit"
+        ],
+        "Master Merchant|Merchant|eMoney Manage": [
+            "eMoney Manage"
+        ],
+        "Master Merchant|Merchant|Request": [
+            "Account Verify",
+            "Merchant Apply",
+            "e-Statement",
+            "Refund",
+            "Account Closed",
+            "Location Request",
+            "KYC Information Request",
+            "KYC Change Request",
+            "Phone Number Change",
+            "Bank Account Change"
+        ],
+        "Master Merchant|Merchant|Basic Enquire": [
+            "Enquire"
+        ],
+
+        "Outlet / Sub-Merchant|Merchant|OTP": [
+            "OTP Receipt Error (Login)",
+            "OTP Receipt Error (Forgot Pin)",
+            "OTP Receipt Error (Change Pin)"
+        ],
+        "Outlet / Sub-Merchant|Merchant|Device Error": [
+            "Phone Device Error"
+        ],
+        "Outlet / Sub-Merchant|Merchant|Promotion": [
+            "Discount Campaign",
+            "Cashback Campaign",
+            "Promo Code Campaign"
+        ],
+        "Outlet / Sub-Merchant|Merchant|Application Log IN": [
+            "Application Login Error",
+            "Firebase Issue",
+            "System Failure",
+            "System Maintainance",
+            "Unable To Download the application"
+        ],
+        "Outlet / Sub-Merchant|Merchant|App Store Issue": [
+            "Can't search App in app store iOS & Andriod"
+        ],
+        "Outlet / Sub-Merchant|Merchant|Registration": [
+            "Account Register"
+        ],
+        "Outlet / Sub-Merchant|Merchant|Top up/ Data PAck": [
+            "Top up/ Data pack Error From customer wallet",
+            "Top up/ Data pack Error From merchant wallet",
+            "Top up/ Data pack Error From agent wallet"
+        ],
+        "Outlet / Sub-Merchant|Merchant|Bill Payment": [
+            "Electricity Bill - Ayeyarwaddy",
+            "Electricity Bill - Yangon",
+            "Electricity Bill - Naypyitaw",
+            "Electricity Bill - Mandalay",
+            "Electricity Bill - Mon",
+            "Electricity Bill - Magway",
+            "Electricity Bill - Bago",
+            "Electricity Bill - Shan",
+            "Electricity Bill - Sagaing",
+            "Canal +",
+            "Skynet"
+        ],
+        "Outlet / Sub-Merchant|Merchant|Transactions Limit": [
+            "Transactions Limit"
+        ],
+        "Outlet / Sub-Merchant|Merchant|eMoney Manage": [
+            "eMoney Manage"
+        ],
+        "Outlet / Sub-Merchant|Merchant|Request": [
+            "Account Verify",
+            "Merchant Apply",
+            "e-Statement",
+            "Refund",
+            "Account Closed",
+            "Location Request",
+            "KYC Information Request",
+            "KYC Change Request",
+            "Phone Number Change",
+            "Bank Account Change"
+        ],
+        "Outlet / Sub-Merchant|Merchant|Basic Enquire": [
+            "Enquire"
+        ],
+
+        "Single Merchant|Merchant|OTP": [
+            "OTP Receipt Error (Login)",
+            "OTP Receipt Error (Forgot Pin)",
+            "OTP Receipt Error (Change Pin)"
+        ],
+        "Single Merchant|Merchant|Device Error": [
+            "Phone Device Error"
+        ],
+        "Single Merchant|Merchant|Promotion": [
+            "Discount Campaign",
+            "Cashback Campaign",
+            "Promo Code Campaign"
+        ],
+        "Single Merchant|Merchant|Application Log IN": [
+            "Application Login Error",
+            "Firebase Issue",
+            "System Failure",
+            "System Maintainance",
+            "Unable To Download the application"
+        ],
+        "Single Merchant|Merchant|App Store Issue": [
+            "Can't search App in app store iOS & Andriod"
+        ],
+        "Single Merchant|Merchant|Registration": [
+            "Account Register"
+        ],
+        "Single Merchant|Merchant|Top up/ Data PAck": [
+            "Top up/ Data pack Error From customer wallet",
+            "Top up/ Data pack Error From merchant wallet",
+            "Top up/ Data pack Error From agent wallet"
+        ],
+        "Single Merchant|Merchant|Bill Payment": [
+            "Electricity Bill - Ayeyarwaddy",
+            "Electricity Bill - Yangon",
+            "Electricity Bill - Naypyitaw",
+            "Electricity Bill - Mandalay",
+            "Electricity Bill - Mon",
+            "Electricity Bill - Magway",
+            "Electricity Bill - Bago",
+            "Electricity Bill - Shan",
+            "Electricity Bill - Sagaing",
+            "Canal +",
+            "Skynet"
+        ],
+        "Single Merchant|Merchant|Transactions Limit": [
+            "Transactions Limit"
+        ],
+        "Single Merchant|Merchant|eMoney Manage": [
+            "eMoney Manage"
+        ],
+        "Single Merchant|Merchant|Request": [
+            "Account Verify",
+            "Merchant Apply",
+            "e-Statement",
+            "Refund",
+            "Account Closed",
+            "Location Request",
+            "KYC Information Request",
+            "KYC Change Request",
+            "Phone Number Change",
+            "Bank Account Change"
+        ],
+        "Single Merchant|Merchant|Basic Enquire": [
+            "Enquire"
+        ],
+        // Example: when TypeOfCaller=Consumer and CustomerSegment=Normal and Category=Disputes
+        "Consumer|Normal|Disputes": [
+            "Bill Payment Disputes Transaction (YESC,MESC,ESE-NPT)",
+            "Gift Cards Dispute - Viber Plus",
+            "Gift Cards Dispute - Myanmar Net Awa Thone",
+            "Gift Cards Dispute - Myanmar Net Prepaid",
+            "Gift Cards Dispute - Free Fire Global",
+            "Gift Cards Dispute - Steam Wallet Code (SG)",
+            "Gift Cards Dispute - Apple iTunes",
+            "Gift Cards Dispute - Hey Play",
+            "Gift Cards Dispute - Warso Learn",
+            "Gift Cards Dispute - Grab Driver / Biker PIN",
+            "Gift Cards Dispute - MLBB"
+        ]
+        ,
+        // Super Agent row from spreadsheet: TypeOfCaller=Super Agent, CustomerSegment=Agent, Category=Disputes
+        "Super Agent|Agent|Disputes": [
+            "Bill Payment Disputes Transaction (YESC,MESC,ESE-NPT)",
+            "Gift Cards Dispute - Viber Plus",
+            "Gift Cards Dispute - Myanmar Net Awa Thone",
+            "Gift Cards Dispute - Myanmar Net Prepaid",
+            "Gift Cards Dispute - Free Fire Global",
+            "Gift Cards Dispute - Steam Wallet Code (SG)",
+            "Gift Cards Dispute - Apple iTunes",
+            "Gift Cards Dispute - Hey Play",
+            "Gift Cards Dispute - Warso Learn",
+            "Gift Cards Dispute - Grab Driver / Biker PIN",
+            "Gift Cards Dispute - MLBB"
+        ]
+        ,
+        // Agent row from spreadsheet: TypeOfCaller=Agent, CustomerSegment=Agent, Category=Dispute/Disputes
+        "Agent|Agent|Disputes": [
+            "Bill Payment Disputes Transaction (YESC,MESC,ESE-NPT)",
+            "Gift Cards Dispute - Viber Plus",
+            "Gift Cards Dispute - Myanmar Net Awa Thone",
+            "Gift Cards Dispute - Myanmar Net Prepaid",
+            "Gift Cards Dispute - Free Fire Global",
+            "Gift Cards Dispute - Steam Wallet Code (SG)",
+            "Gift Cards Dispute - Apple iTunes",
+            "Gift Cards Dispute - Hey Play",
+            "Gift Cards Dispute - Warso Learn",
+            "Gift Cards Dispute - Grab Driver / Biker PIN",
+            "Gift Cards Dispute - MLBB"
+        ],
+        "Agent|Agent|Dispute": [
+            "Bill Payment Disputes Transaction (YESC,MESC,ESE-NPT)",
+            "Gift Cards Dispute - Viber Plus",
+            "Gift Cards Dispute - Myanmar Net Awa Thone",
+            "Gift Cards Dispute - Myanmar Net Prepaid",
+            "Gift Cards Dispute - Free Fire Global",
+            "Gift Cards Dispute - Steam Wallet Code (SG)",
+            "Gift Cards Dispute - Apple iTunes",
+            "Gift Cards Dispute - Hey Play",
+            "Gift Cards Dispute - Warso Learn",
+            "Gift Cards Dispute - Grab Driver / Biker PIN",
+            "Gift Cards Dispute - MLBB"
+        ]
+    };
+
+    function getSubCategoryOptionsFor(selectedCategory) {
+        const callerEl = document.getElementById('typeOfCaller');
+        const segmentEl = document.getElementById('customerSegment');
+        const caller = callerEl ? callerEl.value : '';
+        const segment = segmentEl ? segmentEl.value : '';
+        const key = `${caller}|${segment}|${selectedCategory}`;
+        if (scenarioSubCategoryOverrides[key]) return scenarioSubCategoryOverrides[key];
+        return subCategoryOptions[selectedCategory] || [];
+    }
+
     const subSubCategoryOptions = {
         "Bank Account Cash In Transaction": [
             // "Option 1",
@@ -559,10 +940,43 @@
     populateDropdown('customerSegment', customerSegmentOptions);
     populateDropdown('typeOfCall', Object.keys(categoryOptions));
 
+    // Merchant-specific extra categories (from spreadsheet screenshot)
+    const merchantExtraCategories = [
+        "Transations Limit",
+        "eMoney Manage",
+        "Account Varify",
+        "Merchant Apply",
+        "e-Statement",
+        "Refund",
+        "Account Closed",
+        "Location Request",
+        "KYC Information Request",
+        "KYC Change Request",
+        "Phone Number Change",
+        "Bank Account Change",
+        "Enquire"
+    ];
+
+    function getCategoryOptionsFor(selectedTypeOfCall) {
+        const callerEl = document.getElementById('typeOfCaller');
+        const segmentEl = document.getElementById('customerSegment');
+        const caller = callerEl ? callerEl.value : '';
+        const segment = segmentEl ? segmentEl.value : '';
+
+        const isMerchantCaller = ["Merchant", "Master Merchant", "Outlet / Sub-Merchant", "Single Merchant"].includes(caller);
+        if (isMerchantCaller && segment === 'Merchant' && selectedTypeOfCall === 'Request') {
+            const base = categoryOptions[selectedTypeOfCall] || [];
+            const merged = [...base];
+            merchantExtraCategories.forEach(item => { if (!merged.includes(item)) merged.push(item); });
+            return merged;
+        }
+        return categoryOptions[selectedTypeOfCall] || [];
+    }
+
     // Populate category dropdown
     document.getElementById('typeOfCall').addEventListener('change', function () {
         const selectedTypeOfCall = this.value;
-        const categories = categoryOptions[selectedTypeOfCall] || [];
+        const categories = getCategoryOptionsFor(selectedTypeOfCall);
         populateDropdown('category', categories);
         document.getElementById('category').dispatchEvent(new Event('change'));
     });
@@ -570,7 +984,7 @@
     // Event listener for category to update subCategory
     document.getElementById('category').addEventListener('change', function () {
         const selectedCategory = this.value;
-        const subCategories = subCategoryOptions[selectedCategory] || [];
+        const subCategories = getSubCategoryOptionsFor(selectedCategory);
         populateDropdown('subCategory', subCategories);
         document.getElementById('subCategory').dispatchEvent(new Event('change'));
     });
@@ -584,6 +998,20 @@
 
     // Populate initial dropdowns
     document.getElementById('typeOfCall').dispatchEvent(new Event('change'));
+
+    // When caller or customer segment changes, refresh subCategory for current category
+    const typeOfCallerEl = document.getElementById('typeOfCaller');
+    const customerSegmentEl = document.getElementById('customerSegment');
+    if (typeOfCallerEl) {
+        typeOfCallerEl.addEventListener('change', function () {
+            document.getElementById('category').dispatchEvent(new Event('change'));
+        });
+    }
+    if (customerSegmentEl) {
+        customerSegmentEl.addEventListener('change', function () {
+            document.getElementById('category').dispatchEvent(new Event('change'));
+        });
+    }
 
     // Show/Hide sections based on selection (Open SR or Raise Ticket)
     document.getElementById('openSrOption').addEventListener('change', function () {
